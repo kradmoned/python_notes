@@ -70,6 +70,8 @@ print(summarize_station_sales(records))
 # Expected: {'grill': 7, 'salad': 2}
 ```
 
+---
+
 # **Exercise: Quest Status**
 
 Fantasy Quest stores each character's progress in a nested dictionary structure. Here's what it looks like:
@@ -134,6 +136,8 @@ print(get_quest_status(kaladin_progress))
 # Expected Output: In Progress
 ```
 
+---
+
 # **Exercise: Merge Dictionaries**
 
 Guilds can merge in Fantasy Quest. We need to be able to take two player dictionaries (representing guilds) and merge them into a single guild.
@@ -170,4 +174,83 @@ two_towers = {"Frodo": 56, "Aragorn": 10}
 rotk = {"Aragorn": 100, "Gandalf": 809}
 merged_dict = merge(two_towers, rotk)
 print(merged_dict)
+```
+
+---
+
+# **Exercise: Build Market Item Summary**
+
+**Objective:**
+Complete the `build_item_summary` function. You are given a list of sale records, where each record is a dictionary. Your job is to build a new summary dictionary from scratch.
+
+Each input record will always have an `"item"` key. Some records may also have a `"quantity"` or `"price"` key.
+
+**Return Value:**
+Return a dictionary with exactly these 4 keys:
+
+```json
+{
+    "record_counts": {...},
+    "total_quantities": {...},
+    "latest_prices": {...},
+    "grand_total_quantity": ...
+}
+```
+
+**What each part means:**
+
+- `"record_counts"`: how many records appeared for each item
+- `"total_quantities"`: the total quantity for each item
+- `"latest_prices"`: the most recent price seen for each item
+- `"grand_total_quantity"`: the total quantity across all items
+
+**Rules & Step-by-Step Plan:**
+
+1. Create the result dictionary with empty values (`{}` for the nested dictionaries and `0` for the grand total).
+2. Loop through each record and get the `"item"` value.
+3. If this item is new, add default starting entries for it in `"record_counts"` and `"total_quantities"`.
+4. Increase the record count for that item.
+5. Read the quantity; if it is missing, use `0`.
+6. Add that quantity to both the item's total quantity and the overall `"grand_total_quantity"`.
+7. If a `"price"` exists in the record, update `"latest_prices"` for that item.
+8. If the input list is empty, return the summary shape with empty dictionaries and `0`.
+
+**Examples:**
+
+```python
+records1 = [
+    {"item": "tea", "quantity": 2, "price": 3},
+    {"item": "cake", "quantity": 1, "price": 5},
+    {"item": "tea", "quantity": 4, "price": 4},
+]
+# Expected: {'record_counts': {'tea': 2, 'cake': 1}, 'total_quantities': {'tea': 6, 'cake': 1}, 'latest_prices': {'tea': 4, 'cake': 5}, 'grand_total_quantity': 7}
+
+records2 = [
+    {"item": "apple", "price": 2},
+    {"item": "apple", "quantity": 3},
+    {"item": "banana", "quantity": 2, "price": 1},
+]
+# Expected: {'record_counts': {'apple': 2, 'banana': 1}, 'total_quantities': {'apple': 3, 'banana': 2}, 'latest_prices': {'apple': 2, 'banana': 1}, 'grand_total_quantity': 5}
+```
+
+```python
+def build_item_summary(records):
+
+
+    pass
+
+# --- Test your code ---
+records1 = [
+    {"item": "tea", "quantity": 2, "price": 3},
+    {"item": "cake", "quantity": 1, "price": 5},
+    {"item": "tea", "quantity": 4, "price": 4},
+]
+print(build_item_summary(records1))
+
+records2 = [
+    {"item": "apple", "price": 2},
+    {"item": "apple", "quantity": 3},
+    {"item": "banana", "quantity": 2, "price": 1},
+]
+print(build_item_summary(records2))
 ```
