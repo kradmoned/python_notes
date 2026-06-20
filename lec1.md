@@ -31,7 +31,7 @@
 
     ```python
     name = Abdul-Rehman
-    greeting = f"My name is [name]"
+    greeting = f"My name is {name}"
 
     ```
 
